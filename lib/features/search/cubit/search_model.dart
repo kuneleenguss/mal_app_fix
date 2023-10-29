@@ -8,20 +8,23 @@ import 'package:provider/provider.dart';
 class SearchModel extends ChangeNotifier {
   final AnimeRepository _animeRepository = AnimeRepository();
   List<Anime> animeList = [];
+  final _box = Hive.box<Anime>("anime_list");
 
   Future<void> getAnimeBySearch(String queue) async {
-    
     animeList = await _animeRepository.getAnimeBySearch(queue);
     notifyListeners();
   }
 
   void addAnimeToFavourites (Anime anime) {
-    final box = Hive.box<Anime>("anime_list");
-    (box.values.contains(anime)) 
+    (_box.values.contains(anime)) 
     ? null 
-    : box.add(anime);
+    : _box.add(anime);
     // print(box.getAt(0));
-    print(box.length);
+    print(_box.length);
+    notifyListeners();
   }
 
+  bool isFavourite (Anime anime) { 
+    return _box.values.contains(anime);    
+  }
 }

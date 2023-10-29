@@ -70,4 +70,26 @@ class Anime {
       genresName: List.generate(json["genres"].length, (index) => json["genres"][index]["name"])
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+    identical(this, other) ||
+    other is Anime 
+    && runtimeType == other.runtimeType 
+    && malId == other.malId
+    && url == other.url
+    && smallImageUrl == other.smallImageUrl
+    && imageUrl == other.imageUrl
+    && title == other.title
+    && type == other.type
+    && source == other.source
+    && episodes == other.episodes
+    && status == other.status
+    && rating == other.rating
+    && synopsis == other.synopsis
+    && year == other.year
+    && ifYearNull == other.ifYearNull;
+
+  @override
+  int get hashCode => Object.hash(malId, url, smallImageUrl, imageUrl, title, type, source, episodes, status, rating, synopsis, year, ifYearNull);
 }

@@ -55,6 +55,7 @@ class SearchPage extends StatelessWidget {
                         // shrinkWrap: true,
                         itemCount: search.animeList.length,
                         itemBuilder: (context, index) {
+                          Anime anime = search.animeList[index];
                           return ListTile(
                             style: ListTileStyle.drawer,
                             leading: Container(
@@ -62,21 +63,21 @@ class SearchPage extends StatelessWidget {
                               child: Image(
                                 // Full size image below
                                 // fit: BoxFit.none,
-                                image: NetworkImage(search
-                                    .animeList[index].imageUrl
-                                    .toString()),
+                                image: NetworkImage(anime.imageUrl.toString()),
                               ),
                             ),
                             trailing: IconButton(
                                 onPressed: () {
-                                  search.addAnimeToFavourites(
-                                      search.animeList[index]);
+                                  search.addAnimeToFavourites(anime);
                                 },
-                                icon: const Icon(Icons.star_border)),
+                                icon: Icon(
+                                  (search.isFavourite(anime)) ? Icons.star : Icons.star_border,
+                                  color: (search.isFavourite(anime)) ? Colors.blueGrey : null,
+                                  )),
                             title:
-                                Text(search.animeList[index].title.toString()),
+                                Text(anime.title.toString()),
                             subtitle: Text(
-                                "${search.animeList[index].type} (${search.animeList[index].episodes} episodes) - ${(search.animeList[index].year == null) ? search.animeList[index].ifYearNull : search.animeList[index].year}"),
+                                "${anime.type} (${anime.episodes} episodes) - ${(anime.year == null) ? anime.ifYearNull : anime.year}"),
                             isThreeLine: false,
                           );
                         });
