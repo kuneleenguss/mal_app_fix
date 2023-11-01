@@ -73,6 +73,7 @@ class MyAppView extends StatefulWidget {
 
 class _MyAppViewState extends State<MyAppView> {
   int _selectedIndex = 0;
+  
   final List<Widget> _widgets = <Widget>[
     SearchPage(),
     const FavouritesPage()
