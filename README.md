@@ -38,4 +38,11 @@ class AnimeRepository {
   }
 }
 ```
-asd
+
+### Features folder
+Each of features folders contains model files based on ChangeNotifier that does all logic and presentation files that define UI.
+
+## Packages used
+- [provider](https://pub.dev/packages/provider) for managing state
+- [http](https://pub.dev/packages/http) for talking to REST API
+- [Hive](https://pub.dev/packages/hive) for saving anime list to local storage
