@@ -10,8 +10,14 @@ class SearchModel extends ChangeNotifier {
   List<Anime> animeList = [];
   final _box = Hive.box<Anime>("anime_list");
 
+  bool isLoading = false;
+
   Future<void> getAnimeBySearch(String queue) async {
+    isLoading = true;
+    notifyListeners();
+
     animeList = await _animeRepository.getAnimeBySearch(queue);
+    isLoading = false;
     notifyListeners();
   }
 

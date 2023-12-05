@@ -26,6 +26,7 @@ class SearchPage extends StatelessWidget {
                   child: TextField(
                     controller: _textController,
                     decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(),
                       isDense: true,
                       contentPadding: EdgeInsets.all(8.0),
                       border: OutlineInputBorder(),
@@ -41,7 +42,7 @@ class SearchPage extends StatelessWidget {
             Expanded(
               child: Consumer<SearchModel>(
                 builder: (context, search, child) {
-                  if (search.animeList.isEmpty) {
+                  if (search.animeList.isEmpty && search.isLoading != true) {
                     return const Center(
                       child: Text(
                         "Type anime title in search field ...",
@@ -51,6 +52,11 @@ class SearchPage extends StatelessWidget {
                       ),
                     );
                   } else {
+                    if (search.isLoading == true) {
+                      return const Center(
+                        child: CircularProgressIndicator()
+                      );
+                    }
                     return ListView.builder(
                         // shrinkWrap: true,
                         itemCount: search.animeList.length,
@@ -72,7 +78,7 @@ class SearchPage extends StatelessWidget {
                                 },
                                 icon: Icon(
                                   (search.isFavourite(anime)) ? Icons.star : Icons.star_border,
-                                  color: (search.isFavourite(anime)) ? Colors.blueGrey : null,
+                                  color: (search.isFavourite(anime)) ? const Color.fromRGBO(46, 81, 162, 1) : null,
                                   )),
                             title:
                                 Text(anime.title.toString()),

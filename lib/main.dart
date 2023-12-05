@@ -58,7 +58,16 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: const MyAppView(),
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(46, 81, 162, 1)
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Color.fromRGBO(46, 81, 162, 1),
+          unselectedItemColor: Color.fromARGB(255, 160, 160, 160),
+        ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Color.fromRGBO(46, 81, 162, 1)
+        )
       ),
     );
   }
@@ -99,8 +108,6 @@ class _MyAppViewState extends State<MyAppView> {
             label: "Favourites"
             )
         ],
-        selectedItemColor: Colors.blueGrey,
-        unselectedItemColor: const Color.fromARGB(255, 160, 160, 160),
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
