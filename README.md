@@ -20,7 +20,7 @@ Feature-first structure based on 2 features atm: Search and Favourites.
 The data folder contains all necessary shit that is used to fetch/parse requests from the [MyAnimeList API](https://docs.api.jikan.moe/).
 
 Especially `AnimeRepository` is responsible for fetching data from the [MyAnimeList API](https://docs.api.jikan.moe/) and providing the parsed result.
-```java
+```dart
 class AnimeRepository {
 
   final OpenMalApi _api = OpenMalApi();
