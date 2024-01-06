@@ -21,6 +21,7 @@ The data folder contains all necessary shit that is used to fetch/parse requests
 
 Especially `AnimeRepository` is responsible for fetching data from the [MyAnimeList API](https://docs.api.jikan.moe/) and providing the parsed result.
 ```
+java
 class AnimeRepository {
 
   final OpenMalApi _api = OpenMalApi();
